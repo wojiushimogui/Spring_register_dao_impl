@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/spring</property>  <!--  hibernate为数据库名称 -->
+        <!--  数据库的用户名和密码 -->
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect 主要看你使用的是那种数据库 -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <!--  按一定的格式来进行打印MySQL的SQL语句  -->
+        <property name="format_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <!--  属性hbm2ddl.auto 可选值有:create|update|drop-create|invalide 
+        create  每次都会给你新建一个表，因此存在数据丢失
+        update  当你的实体类中添加或删除了其他的属性，即将导致相应的表结构发生变化，因此会更改表的结构
+        invalide  即对象关系映射的检查。
+        -->
+       <property name="hbm2ddl.auto">update</property> 
+		<!-- Student类与表Student的映射关系 
+		
+        <mapping resource="com/hibernate/model/Student.hbm.xml"/>
+		
+		-->
+        
+        <mapping class="com.register.model.User"/>
+
+    </session-factory>
+
+</hibernate-configuration>
